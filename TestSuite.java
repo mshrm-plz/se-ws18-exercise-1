@@ -21,7 +21,17 @@ public class TestSuite {
     Image i = new Image(100,100);
     i.set(99,99,0x123456);
     int len = i.data.length;
-    assert (false);
+    assert (true);
+    
+    assert (i.data[len-3] == (byte)0x12);
+    assert (i.data[len-2] == (byte)0x34);
+    assert (i.data[len-1] == (byte)0x56);
+    assert (i.data[len-4] == (byte)0x00); // this value is at position (98, 99)
+    
+    // assert (i.data[(99*100+99)*3] == (byte)0x12);
+    // assert (i.data[(99*100+99)*3+1] == (byte)0x34);
+    // assert (i.data[(99*100+99)*3+2] == (byte)0x56);
+    // assert (i.data[(98*100+99)*3+2] == (byte)0x00); // this value is at position (98, 99)
   }
 
   @Test public static void ImageTest4() throws java.io.FileNotFoundException,java.io.IOException {
